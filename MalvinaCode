@@ -1,0 +1,215 @@
+//ЭТО МОЙ КОД.
+//ЕСЛИ ЧТО - писать на мыло.(П.С. - мыло в README)
+
+//Добавлены пакеты - Discord.Net
+
+using System;
+using System.Drawing;
+using System.IO;
+using System.Threading;
+using Discord;
+
+namespace Synergy
+{
+    class MainClass
+    {
+        public static DiscordClient c;
+        public static Random rand = new Random();
+
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Logging");
+            c = new DiscordClient();
+            c.Connect("MzExMDg3NzMyMzIxNjgxNDA4.C_Haig.yJzoB_8G1VkP3KoG_wYcTWWyKY0", TokenType.Bot);
+            Console.WriteLine("Logged");
+            c.MessageReceived += C_MessageReceived;
+            Console.WriteLine("Press any key to stop bot.");
+            Console.ReadKey();
+        }
+
+        private static void C_MessageReceived(object sender, MessageEventArgs a)
+        {
+            string msg = a.Message.Text.ToLower();
+            if (msg == "тест")
+            {
+                a.Channel.SendMessage("Я нормально работаю.");
+
+            }
+
+            if (msg == "-helpm")
+            {
+                a.Channel.SendMessage(a.User.Mention + ", helpmusic - помощь по музыке/help by music commands\n" +
+                            "-helpm - помощь по командам/help by commands\n" +
+                            "-anime - список аниме/list of anime\n" +
+                            "-movies - список фильмов/lis of movies\n" +
+                            "-links - полезные ссылки/useful links\n" +
+                            "-contacts - контакты разработчика/contacts of developer\n" +
+                            "-bot - информация о системе/information about the system\n" +
+                            "-invite - инвайт ссылка на добавление/Invite link to add\n");
+            }
+
+            if (msg == "-helpmusic")
+            {
+                a.Channel.SendMessage(a.User.Mention + ", -summon - команда подключения к каналу/channel connection command\n" +
+                    "-play [ссылка или название/link or name song]\n" +
+                    "-skip - команда пропуска песни/skip song command\n" +
+                    "-stop - команда остановки/stop command\n" +
+                    "-songlist - текущий плейлист/now playlist\n" +
+                    "-disconnect - команда отключения от канала/channel disconnection command\n" +
+                    "**WARNING! ВНИМАНИЕ!**\n" +
+                    "__**Музыкальная часть в разработке!**__\n" +
+                    "__**The musical part is in development!**__\n");
+
+            }
+
+            if (msg == "-anime")
+            {
+                a.Channel.SendMessage(a.User.Mention + ", **WARNING! ВНИМАНИЕ**!\n" +
+                    "*All ratings were compiled for 2016-2017 by the Developer! All Claims to Google, but not to the developer!\n" +
+                    "Все рейтинги были составлены на 2016-2017 год Разработчиком! Все Претензии к Гуглу, но не к разработчику!*\n" +
+                    "**Список Аниме на этот месяц С:**\n" +
+                    "**Anime List for this month С:**\n" +
+                    "TOP ANIME 30\n" +
+                    "1. Хвост Феи/Fairy Tail\n" +
+                    "2. Мастера меча онлайн/Masters of the sword online\n" +
+                    "3. Жизнь в другом мире с нуля/Life in another world from scratch\n" +
+                    "4. Синий Экзорцист/Blue Exorcist\n" +
+                    "5. Блич/Bleach\n" +
+                    "6. Атака Титанов/Attack of the Titans\n" +
+                    "7. Президент - Горничная!/President - Maid!\n" +
+                    "8. Токийский Гуль/Tokyo Gul\n" +
+                    "9. Убийца Акамэ/Killer Akame\n" +
+                    "10. Богиня благословляет это прекрасный мир/Goddess blesses this beautiful world\n" +
+                    "11. Бездомный Бог / Homeless God\n" +
+                    "12. Демоны старшей школы / High School Demons\n" +
+                    "13. Темный Дворецкий/Dark Butler\n" +
+                    "14. Кошечка из Сакурасо/Kitty from Sakuraso\n" +
+                    "15. Сатана на подработке/Satan at work\n" +
+                    "16. Дневник Будущего/A diary of the future\n" +
+                    "17. В подземелье я пойду, там красавицу найду/In the dungeon I'll go, there's a beauty I'll find\n" +
+                    "18. Тетрадь Смерти/Death Note" +
+                    "19. Стальной Алхимик/Fullmetal Alchemist\n" +
+                    "20. Последний Серафим/The Last Seraphim\n" +
+                    "21. Нет игры - нет жизни/ No game - no life\n" +
+                    "22. Две звезды Онмеджи/Two stars of Onmegi\n" +
+                    "23. Очень приятно, Бог/Very nice, God.\n" +
+                    "24. Ванпанчмен/Vanchanchmen\n" +
+                    "25. Пес, Я и Секретная служба/The Dog, Me and the Secret Service\n" +
+                    "26. Баскетбол Куроко/Kuroko Basketball\n" +
+                    "27. Боевая Академия города Астериск/Battle Academy of Asterisk\n" +
+                    "28. Скажи: 'Я люблю тебя'/Say: 'I Love You'\n" +
+                    "29. Корона Грешника/Sinner's crown \n" +
+                    "30. Монстр за соседней партой/Monster at the next desk\n" +
+                    "*P.S. The developer to all this crap with anime to write spent an hour surfing the Internet and coding for you.\n" +
+                    "P.S. Разработчик чтобы всю эту хрень с аниме написать потратил целый час серфинга в интернете и кодинга для вас.*\n");
+
+            }
+
+            if (msg == "-movies")
+            {
+                a.Channel.SendMessage(a.User.Mention + ", **WARNING!ВНИМАНИЕ!**\n" +
+                    "*Все рейтинги были составлены на 2016-2017 год Разработчиком! Все Претензии к Гуглу, но не к разработчику!\n" +
+                    "All ratings were compiled for 2016-2017 by the Developer! All Claims to Google, but not to the developer!*\n" +
+                    "TOP 30\n" +
+                    "1. Космос между нами/The space between us\n" +
+                    "2. Голоса Большой Страны/Voices of the Great Country(Russian Movie)\n" +
+                    "3. Люси/Lucy\n" +
+                    "4. Троя/Troy\n" +
+                    "5. Битва Богов\n" +
+                    "6. Атака Титанов/Attack of the Titans (Japan)\n" +
+                    "7. Эффект Бабочки/Butterfly Effect\n" +
+                    "8. Фокус/Focus\n" +
+                    "9. Энни/Anny\n" +
+                    "10. Невеста/Bride\n" +
+                    "11. Звонок/Ringu (Japan)\n" +
+                    "12. Бегущий в Лабиринте/Running in the Labyrinth\n" +
+                    "13. Нерв/Nerve\n" +
+                    "14. Запрос в друзья/friend request\n" +
+                    "15. Jem and Holograms/ Джем и голограммы\n" +
+                    "16. Битва за Севастополь/The Battle for Sevastopol (Russian)\n" +
+                    "17. Если я останусь/If I stay\n" +
+                    "18. Марсианин/Martian\n" +
+                    "19. Если б я была мужчиной/If I were a man\n" +
+                    "20. Моно/Mono\n" +
+                    "21. Виноваты Звезды/The Fault in Our Stars\n" +
+                    "22. Звездная Болезнь/Star fever\n" +
+                    "23. Почти Семнадцать/Nearly Seventeen\n" +
+                    "24. Идеальный Мужчина/The Perfect Man\n" +
+                    "25. Кредо-Убийцы/Assassin's Creed\n" +
+                    "27. 400 Дней/400 Days\n" +
+                    "28. Охотники за Привидениями/Ghostbusters\n" +
+                    "29. Максимум Райд/Maximum Ride\n" +
+                    "30. Интерстеллар/Interstellar\n");
+
+            }
+
+            if (msg == "-links")
+            {
+                a.Channel.SendMessage(a.User.Mention + ", Команда в разработке. Просим прощения.\n" +
+                    "The command is in development. We Apologise.");
+
+            }
+
+            if (msg == "-contacts")
+            {
+                a.Channel.SendMessage(a.User.Mention + ", ***Contacts of developer\n" +
+                    "Контакты разработчика***\n" +
+                    "asem.mukhan@aol.com - e-mail для сотрудничества и отправки репорта/E-mail for cooperation and for sending a report.\n" +
+                    "vk.com/aiko.tyan - страница ВКонтакте разработчика/page VK of developer\n" +
+                    "discord.gg/hSXWSFk - Дискорд Сервер/Discord Server\n" +
+                    "live:mukanova.04 - Skype\n");
+
+            }
+
+            if (msg == "-bot")
+            {
+                a.Channel.SendMessage(a.User.Mention + ", Hello! My name is 51N3RG.Y or just - Synergy! I'm work in Russian and English ^^ My system developing for help users server " +
+                    "and help for you :) To get help - write -helpm." +
+                    "I'm developed in the Visual Studio environment." +
+                    " In the programming language - C#. In my system, the links department is still under development," +
+                    " and soon the music department will appear. In the Closed Beta Testing (CBT)," +
+                    " five people will be selected who will test the Music Department. Also, my developer is now developing my mind." +
+                    " I can talk to you in a text chat, but it's not so very soon and will be. Let's hope that soon, I will be better than now!" +
+                    "\n" +
+                    "Yours faithfully, Synergy.\n" +
+                    "\n" +
+                    "Привет! Меня зовут 51N3RG.Y или просто Синерджи! Я работаю на русском и английском языках ^^ Моя система разработана для того чтобы помогать пользователям сервера " +
+                    "и вам :) Чтобы получить помощь - пиши -helpm." +
+                    "Я разработана в среде Visual Studio. На языке программирования - С#. В моей системе разрабатывается отдел ссылок и музыкальный отдел. " +
+                    "На закрытом бета тестировании (ЗБТ), будет отобрано пять человек которые будут тестить Музыкальный Отдел. Также, мой разработчик разрабатывает мой разум. " +
+                    "Я смогу разговаривать в текстовом чате, но это будет не скоро. Но надеемся, что моя система будет лучше чем сейчас!" +
+                    "\n" +
+                    "С уважением, Синерджи. \n");
+
+            }
+
+            if (msg == "-invite")
+            {
+                a.Channel.SendMessage(a.User.Mention + ", Thank you for adding me your server, i'm pleased! - https://discordapp.com/oauth2/authorize?client_id=311087732321681408&scope=bot&permissions=104332289\n" +
+                    "Спасибо что добавляете меня на свой сервер, я рада! - https://discordapp.com/oauth2/authorize?client_id=311087732321681408&scope=bot&permissions=104332289\n");
+
+            }
+            
+            if (msg == "-i'm bot")
+            {
+                a.Channel.SendMessage(a.User.Mention + ", **Hello! Thank you for adding me your server!**\n" +
+                    "**My name is 51N3RG.Y or just Synergy. I'm bot. To get help - write -help.**\n" +
+                    "\n" +
+                    "**Привет! Спасибо что добавили меня на свой сервер!**\n" +
+                    "**Мое имя 51N3RG.Y или просто Синерджи. Я бот. Чтобы получить помощь - пиши -help**\n");
+            }
+
+            if (msg == "-sleep3000")
+            {
+                if (a.User.Id == 181150947467067393)
+                {
+                    a.Channel.SendMessage(a.User.Mention + ",```Отключение программы...```");
+                    System.Threading.Thread.Sleep(3000);
+                    System.Environment.Exit(0);
+                } else {
+                    a.Channel.SendMessage(a.User.Mention + ",***Вы не разработчик и не администратор.**");
+                }
+            }
+        }
+    }
+}
